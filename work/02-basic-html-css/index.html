@@ -2,18 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sample Website</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
+  <title>02-basic-html-css--Home</title>
 </head>
 <body>
   <header>
-    <img class="logo" src="//placekitten.com/50/50" alt="random cat in lieu of logo"/>
-    <h1>Behold the Power of Cats</h1>
+    <img class="header__logo" src="//placekitten.com/50/50" alt="random cat in lieu of logo"/>
+    <h1 class="header__title">Behold the Power of Cats</h1>
   </header>
-  <main> 
-    REPLACE THIS LINE WITH CONTENT
+  <main>
+    <div class="main__container">
+      <h2 class="list__title">My Favorite Cats</h2>
+      <ul class="main__list">
+        <li class="list__item">
+          <a class="item__link" href="http://basepaws.com/cat-breeds/maine-coon"> Maine Coon</a>
+        </li>
+        <li class="list__item">
+          <a class="item__link" href="https://basepaws.com/cat-breeds/bengal-cat"> Bengal Cat</a>
+        </li>
+        <li class="list__item">
+          <a class="item__link" href="https://basepaws.com/cat-breeds/american-wirehair"> American Wirehair</a>
+        </li>
+        <li class="list__item">
+          <a class="item__link" href="https://basepaws.com/cat-breeds/persian-cat"> Persian Cat</a>
+        </li>
+        <li class="list__item">
+          <a class="item__link" href="https://basepaws.com/cat-breeds/british-shorthair"> British Shorthair</a>
+        </li>
+        <li class="list__item">
+          <a class="item__link" href="https://basepaws.com/cat-breeds/thai-siamese"> Thai Siamese</a>
+        </li>
+      </ul>
+    </div> 
   </main>
   <footer>
-    REPLACE THIS WITH A LINK
+    <a class="footer__privacy" href="privacy.html">Privacy Policy</a>
   </footer>
 </body>
 </html>

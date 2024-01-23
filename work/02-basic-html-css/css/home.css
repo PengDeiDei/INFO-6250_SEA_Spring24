@@ -1,0 +1,14 @@
+.main__container{
+    padding: 0.5rem;
+}
+
+.list__title{
+    text-align: center;
+}
+
+.main__list{
+    border: 1px solid black;
+    border-radius: 0.5rem;
+
+    list-style-type: "\1F431";
+}
