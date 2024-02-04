@@ -8,21 +8,28 @@ module.exports = compare; // DO NOT MODIFY - USED FOR TESTING
  */
 function compare( word, guess ) {  // DO NOT MODIFY
 /* YOU MAY MODIFY THE LINES BELOW */
-  const wordArray = word.toLowerCase().split('');
-  const guessArray = guess.toLowerCase().split('');
+  word = word.toLowerCase().split('');
+  guess = guess.toLowerCase().split('');
 
-  let count = 0;
-
-  /* for each loop to go over each element in word array to check if the
-   * current element appears in the guess array; If found, remove the 
-   * first found element in the guess array and increase count.
+  let matched = 0;
+  const letterCount = {};
+  
+  /* 
+   * For each loop to count the number of each letter in word
    */
-  wordArray.forEach(letter => {
-    if(guessArray.includes(letter)){
-      count++;
-      guessArray.splice(guessArray.indexOf(letter),1);
+  word.forEach(letter => {
+    letterCount[letter] = letterCount[letter]+1 || 1;
+  });
+
+  /*
+   * For each loop to count the common letters between word and guess
+   */
+  guess.forEach(letter => {
+    if(letterCount[letter]){
+      letterCount[letter] -= 1;
+      matched++;
     }
   });
 
-  return count;
+  return matched;
 }
