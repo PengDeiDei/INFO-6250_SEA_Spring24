@@ -59,6 +59,7 @@ header{
 
 main{
     grid-area: main;
+    background-color: lightgray;
 }
 
 footer{

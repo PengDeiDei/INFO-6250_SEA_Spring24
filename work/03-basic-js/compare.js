@@ -3,17 +3,33 @@
 module.exports = compare; // DO NOT MODIFY - USED FOR TESTING
 
 /*
- * since we only care about the common letters between two words,
- * it is better to use Set to remove duplicated letters in each word
- * before comparing
+ * Revise the function using Array rather than Set or Map following the 
+ * restriction. 
  */
 function compare( word, guess ) {  // DO NOT MODIFY
 /* YOU MAY MODIFY THE LINES BELOW */
-  const wordSet = new Set(word.toLowerCase());
-  const guessSet = new Set(guess.toLowerCase());
+  word = word.toLowerCase().split('');
+  guess = guess.toLowerCase().split('');
 
-  // creat a new set that only contains common letters in both word and guess
-  const commonLettersSet = new Set([...wordSet].filter(letter => guessSet.has(letter)));
+  let matched = 0;
+  const letterCount = {};
+  
+  /* 
+   * For each loop to count the number of each letter in word
+   */
+  word.forEach(letter => {
+    letterCount[letter] = letterCount[letter]+1 || 1;
+  });
 
-  return commonLettersSet.size; // this line is wrong
+  /*
+   * For each loop to count the common letters between word and guess
+   */
+  guess.forEach(letter => {
+    if(letterCount[letter]){
+      letterCount[letter] -= 1;
+      matched++;
+    }
+  });
+
+  return matched;
 }
