@@ -21,7 +21,7 @@ html, body {
   height: 100%;
 }
 
-.users { 
+.users {
   grid-area: users;
 
   padding: 0;
