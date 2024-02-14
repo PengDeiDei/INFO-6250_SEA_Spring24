@@ -1,3 +1,5 @@
+const { type } = require("os");
+
 const sessions = {};
 const words = {};
 

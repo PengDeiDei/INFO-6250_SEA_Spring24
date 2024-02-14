@@ -17,7 +17,6 @@ app.get('/', (req, res) => {
     
     if(sid && data.isValidSID(sid)){
         const username = data.sessions[sid].username;
-
         if(!data.words[username]){
             data.words[username] = '';
         }
@@ -49,10 +48,14 @@ app.post('/login', (req, res) => {
 app.post('/update', (req, res) => {
     const sid = req.cookies.sid;
     const word = req.body.word.trim();
-    const username = data.sessions[sid].username;
+    
+    if(sid && data.isValidSID(sid)){
+        const username = data.sessions[sid].username;
 
-    data.words[username] = word;
-    res.redirect('/');
+        data.words[username] = word;
+        res.redirect('/'); 
+    }
+    res.send(dataWeb.loginPage());
 });
 
 // logout
