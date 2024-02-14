@@ -1,0 +1,69 @@
+*, *::before, *::after { 
+    box-sizing: border-box;
+}
+  
+html, body { 
+    height: 100%;
+    margin: 0;
+  
+    font-family: sans-serif;
+}
+  
+.login__page{
+    background-color: bisque;
+
+    border-radius: 0.5rem;
+}
+
+.form__btn{
+    width: 10%;
+    border-radius: 0.5rem;
+    margin: 0.1rem;
+}
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+}
+
+.data__page{
+    background-color: bisque;
+
+    border-radius: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.data__display{
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+}
+
+.update__form{
+    display: flex;
+    flex-direction: column;
+    padding: 0.1rem;
+}
+
+.logout__btn{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+}
+
+.error__page{
+    background-color: bisque;
+
+    border-radius: 0.5rem;
+
+    padding: 0.5rem;
+    margin: 0.5rem;
+}
+
+.error__status::first-letter{
+    font-size: 150%;
+    line-height: 1.6;
+}
