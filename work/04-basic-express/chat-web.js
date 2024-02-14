@@ -65,7 +65,7 @@ const chatWeb = {
     return `
     <div class="outgoing">
       <form action="./chat" method="POST">
-        <input type="hidden" name="sender" value="Amit"/>
+        <input type="hidden" name="username" value="Amit"/>
         <input class="to-send" name="text" value="" placeholder="Enter message to send"/>
         <button type="submit">Send</button>
       </form>
