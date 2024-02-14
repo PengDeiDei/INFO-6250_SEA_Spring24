@@ -1,5 +1,3 @@
-const { application } = require("express");
-
 const dataWeb ={
     loginPage: function(){
         return `
