@@ -66,4 +66,4 @@ app.post('/logout',(req,res) => {
     res.redirect('/');
 });
 
-app.listen(PORT,() => console.log(`Listening on http://localhost:${PORT}`));
+app.listen(PORT);

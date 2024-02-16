@@ -70,6 +70,7 @@ const dataWeb ={
             <div class="error__page">
                 <h1 class="error__status">Error: ${errorStatus}</h1>
                 <p>${errorMsg}</p>
+                <a href="/">Click to homepage</a>
             </div>
         </body>
         </html>
