@@ -90,7 +90,7 @@ const webPage = {
                 </div>
                 <div class="guessedWords__container">
                     <p class="guessedWords__mgs">List of Guessed Words</p>
-                    <p class="guessedWords__note">Record as {Guessed Word, Matched Letters, Common Letters}</p>
+                    <p class="guessedWords__note">Record as {Guessed Word, Matched Letters, Unique Common Letters}</p>
                     <ul class="guessedWords__list">
                         ${webPage.getGuessedList(game)}
                     </ul>

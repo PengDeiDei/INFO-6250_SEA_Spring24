@@ -23,7 +23,7 @@ app.get('/', (req,res) =>{
         }
 
         const game = users.savedGame[username];
-        
+
         res.send(webPage.gamePage(username, game, 'Make Your Guess From the Word List'));
         return;
     }

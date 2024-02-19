@@ -35,7 +35,7 @@ const takeTurn = function(guess, game) {
     game.guesses.push({guess, matches, commons});
 
     message = `Your guess "${guess}" matched ${matches} letters out of ${word.length}.` 
-        + ` The common letters are: [ ${commons} ]`;
+        + ` The unique common letters are: [ ${commons} ]`;
     return {finishFlag, message};
 };
 
@@ -65,7 +65,19 @@ function exactMatch (word, guess) {
 function getCommonLetters(word, guess){
     word = word.toLowerCase().split('');
     guess = guess.toLowerCase().split('');
-    const commonLetters = word.filter(letter => guess.includes(letter));
+    let commonLetters = [];
+
+    for (const letter of word) {
+        if (!commonLetters.includes(letter) && guess.includes(letter)) {
+            commonLetters.push(letter);
+        }
+    }
+
+    for (const letter of guess) {
+        if (!commonLetters.includes(letter) && word.includes(letter)) {
+            commonLetters.push(letter);
+        }
+    }
 
     return commonLetters;
 }
