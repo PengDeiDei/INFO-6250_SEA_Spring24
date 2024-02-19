@@ -41,8 +41,9 @@ app.post('/login', (req,res) => {
     users.sessions[sid] = {username};
     users.userState[username] = 1;
 
-    if(!users.savedGame[username]){
+    if(!users.savedGame[username]){ // create new game for logged in user with no ongoing game
         users.savedGame[username] = gameHelper.setGame();
+        console.log(`Create New Game With User: ${username} and Word: ${users.savedGame[username].word}`);
     }
 
     res.cookie('sid', sid);
@@ -66,6 +67,8 @@ app.post('/new-game', (req, res) =>{
         const game = gameHelper.setGame();
         users.savedGame[username] = game;
         users.userState[username] = 1;
+
+        console.log(`Create New Game With User: ${username} and Word: ${game.word}`);
 
         res.send(webPage.gamePage(username, game, 'Make Your Guess From the Word List'));
         return;
