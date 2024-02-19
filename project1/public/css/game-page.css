@@ -1,0 +1,127 @@
+.game-page{
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+
+    margin: 0.5rem;
+
+    box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.3);
+}
+
+.display__container{
+    grid-column: span 6;
+}
+
+.display__msg{
+    text-align: center;
+}
+
+.words__list{
+    display: grid;
+
+    background-color: lightblue;
+
+    border-top: 1px solid black;
+
+    border-bottom: 1px solid black;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    padding: 0.5rem;
+
+}
+
+.list__item{
+    grid-column: span 1;
+
+    list-style-type: none;
+
+    padding: 0.1rem;
+}
+
+.message__container{
+    grid-column: span 6;
+
+    background-color: bisque;
+
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.avatar{
+    height: 4rem;
+    padding: 0.5rem;
+}
+
+.message__avatar{
+    border-right: 1px solid black;
+}
+
+.game__message{
+    padding-left: 0.5rem;
+}
+
+.guess__avatar{
+    border-left: 1px solid black;
+}
+
+.guess__container{
+    grid-column: span 6;
+
+    background-color: lightblue;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+}
+
+.guess__form{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+}
+
+.guess__lbl{
+    grid-column: span 6;
+}
+
+.guess__lbl input{
+    display: inline-block;
+}
+
+.game__btn{
+    grid-column: span 6;
+    justify-self: end;
+    width: 5rem;
+}
+
+.new-game__container{
+    grid-column: span 3;
+    padding: 0.5rem;
+}
+
+.logout__container{
+    grid-column: span 3;
+    padding: 0.5rem;
+}
+
+.form__btn{
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 40rem) {
+    .words__list{
+        grid-template-columns: repeat(9, 1fr);
+    }
+}
