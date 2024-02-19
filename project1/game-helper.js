@@ -6,7 +6,7 @@ const setGame = function(){
         word: pickWord(words),
         turns: 0,
         wordList: [...words],
-        guesses: {},
+        guesses: [],
     }
 };
 
@@ -32,7 +32,7 @@ const takeTurn = function(guess, game) {
 
     const matches = compare(word, guess);
     commons = getCommonLetters(word,guess)
-    game.guesses = {guess, matches, commons};
+    game.guesses.push({guess, matches, commons});
 
     message = `Your guess "${guess}" matched ${matches} letters out of ${word.length}.` 
         + ` The common letters are: [ ${commons} ]`;

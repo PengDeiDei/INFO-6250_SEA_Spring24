@@ -88,6 +88,14 @@ const webPage = {
                         ${webPage.getWordList(game)}
                     </ul>
                 </div>
+                <div class="guessedWords__container">
+                    <p class="guessedWords__mgs">List of Guessed Words</p>
+                    <p class="guessedWords__note">Record as {Guessed Word, Matched Letters, Common Letters}</p>
+                    <ul class="guessedWords__list">
+                        ${webPage.getGuessedList(game)}
+                    </ul>
+                    <p class="guessedWords__mgs">You have made ${game.turns} turns of guessing.</p>
+                </div>
                 <div class="message__container">
                     <img class="avatar message__avatar" alt="avatar of amit" src="images/avatar-amit.jpg"/>
                     ${webPage.getGameMessage(message)}
@@ -137,6 +145,14 @@ const webPage = {
         </p>
         `;
     },
+
+    getGuessedList: function(game){
+        return game.guesses.map( item => `
+            <li class="list__item">
+                <span>{${item.guess}, ${item.matches}, [${item.commons}]}</span>
+            </li>
+        `).join('');
+    }
 };
 
 module.exports = webPage;
