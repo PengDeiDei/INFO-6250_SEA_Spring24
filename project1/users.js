@@ -1,5 +1,6 @@
 const sessions = {};
 const savedGame = {};
+const userState = {};
 
 const isValidSID = function(sid){
     return sessions[sid];
@@ -31,6 +32,7 @@ const isValidUsername = function(username) {
 const users = {
     sessions,
     savedGame,
+    userState,
     isValidSID,
     isValidUsername,
 };

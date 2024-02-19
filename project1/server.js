@@ -18,10 +18,6 @@ app.get('/', (req,res) =>{
     if(sid && users.isValidSID(sid)){
         const username = users.sessions[sid].username;
 
-        if(!users.savedGame[username]){
-            users.savedGame[username] = gameHelper.setGame();
-        }
-
         const game = users.savedGame[username];
 
         res.send(webPage.gamePage(username, game, 'Make Your Guess From the Word List'));
@@ -43,6 +39,12 @@ app.post('/login', (req,res) => {
 
     const sid = uuidv4();
     users.sessions[sid] = {username};
+    users.userState[username] = 1;
+
+    if(!users.savedGame[username]){
+        users.savedGame[username] = gameHelper.setGame();
+    }
+
     res.cookie('sid', sid);
     res.redirect('/');
 });
@@ -63,6 +65,7 @@ app.post('/new-game', (req, res) =>{
         const username = users.sessions[sid].username;
         const game = gameHelper.setGame();
         users.savedGame[username] = game;
+        users.userState[username] = 1;
 
         res.send(webPage.gamePage(username, game, 'Make Your Guess From the Word List'));
         return;
@@ -80,7 +83,9 @@ app.post('/guess', (req,res) => {
         const guess = req.body.guess.trim().toLowerCase();
         const game = users.savedGame[username];
         
-        let {finishFlag, message} = gameHelper.takeTurn(guess, game);
+        let {finishFlag, message, userState} = gameHelper.takeTurn(guess, game);
+
+        users.userState[username] = userState;
 
         if(finishFlag){
             message += ` Press New Game to Start a New Game.`;

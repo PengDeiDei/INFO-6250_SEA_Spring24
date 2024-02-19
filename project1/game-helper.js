@@ -13,10 +13,12 @@ const setGame = function(){
 const takeTurn = function(guess, game) {
     let message = '';
     let finishFlag = false;
+    let userState = 1;
     message = isValidGuess(guess, game);
 
     if(message){
-        return {finishFlag, message};
+        userState = 0;
+        return {finishFlag, message, userState};
     }
 
     const word = game.word;
@@ -36,7 +38,7 @@ const takeTurn = function(guess, game) {
 
     message = `Your guess "${guess}" matched ${matches} letters out of ${word.length}.` 
         + ` The unique common letters are: [ ${commons} ]`;
-    return {finishFlag, message};
+    return {finishFlag, message, userState};
 };
 
 const isValidGuess = function (guess, game){
