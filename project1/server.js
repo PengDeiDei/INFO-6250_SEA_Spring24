@@ -26,8 +26,9 @@ app.get('/', (req,res) =>{
         let message = 'Make Your Guess From the Word List';
 
         if(game.guesses.guess){
-            message = `Your guess: ${game.guesses.guess} matched`+
-            ` ${game.guesses.matches} letters out of ${game.word.length}`;
+            message = `Your guess "${game.guesses.guess}" matched`+
+            ` ${game.guesses.matches} letters out of ${game.word.length}.`+
+            ` The common letters are: [ ${game.guesses.commons} ]`;
         }
 
         res.send(webPage.gamePage(username, game, message));
