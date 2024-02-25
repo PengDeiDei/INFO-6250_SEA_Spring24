@@ -1,0 +1,48 @@
+*, *::before, *::after { 
+    box-sizing: border-box;
+}
+  
+html, body { 
+    width: 100%;
+    margin: 0;
+  
+    font-family: sans-serif;
+}
+
+body {
+    display:grid;
+
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+
+    grid-template-rows: auto 1fr auto;
+}
+
+header {
+    grid-area: header;
+
+    background-color: bisque;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.header__title{
+    padding: 0 0.5rem;
+}
+
+main {
+    grid-area: main;
+
+    background-color:beige;
+}
+
+footer {
+    grid-area: footer;
+
+    background-color: bisque;
+
+    text-align: center;
+}
