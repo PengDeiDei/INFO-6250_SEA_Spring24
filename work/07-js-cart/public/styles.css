@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;  
+}
+
+html, body{
+    font-family: sans-serif;
+
+    width: 100%;
+
+    margin: 0;
+}
+
+#root{
+    display:grid;
+
+    grid-template-areas: 
+    "header"
+    "cart"
+    "product";
+
+    grid-template-rows: auto 1fr auto;
+}
+
+header{
+    background-color: bisque;
+    grid-area: header;
+}
+
+.header__title{
+    text-align: center;
+}
+
+button{
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+}
+
+.cart__page{
+    background-color: beige;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.cart__container{
+    align-self: center;
+}
+
+.view-cart__btn, .hide-cart__btn{
+    border-radius: 0;
+    width: 5rem;
+    margin: 0 0 0 0.5rem;
+}
+
+.cart__list{
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+    
+    position: absolute;
+
+    border: 1px solid black;
+    background-color: beige;
+    box-shadow: 0 1rem 2rem 0 rgba(240, 240, 240, 0.2);
+    
+    padding: 0;
+    margin-left: 0.5rem;
+    list-style: none;
+}
+
+.cart__item{
+    display: grid;
+    border-bottom: 1px solid black;
+
+    grid-template-columns: repeat(12,1fr);
+    padding: 0.5rem;
+}
+
+.item__img{
+    grid-column: span 3;
+}
+
+.item__info{
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.cart__btn-group{
+    grid-column: span 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cart__empty-notice, .cart__totalSum{
+    display: inline;
+}
+
+.cart__totalSum{
+    border: none;
+}
+
+.product__page{
+    grid-area: product;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.cat__card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    align-items: center;
+    margin: 0.5em;
+    
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: #eeeeee;
+}
+
+.cat__name, .cat__price{
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.cat__img{
+    border: 1px solid black;
+}
+
+@media (min-width: 44rem){
+    .product__page{
+        display: grid;
+        grid-template-columns: repeat(6,1fr);
+    }
+
+    .cat__card{
+        grid-column: span 2;
+    }
+}
