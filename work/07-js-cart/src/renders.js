@@ -36,6 +36,7 @@ function renderProducts(state, rootEl){
 function renderCart(state, rootEl){
     let cartHtml = cats.map((cat) => {
         if(state.cart[cat.name]){
+            const currentTotal = (cat.price * state.cart[cat.name]).toFixed(2);
             return `
                 <li class="cart__item">
                     <img class="item__img" alt="" 
@@ -44,6 +45,7 @@ function renderCart(state, rootEl){
                         <h2 class="item__name">${cat.name}</h2>
                         <span class="item__price">Price: $${cat.price}</span>
                         <span class="item__number">Quantity: ${state.cart[cat.name]}</span>
+                        <span class="item__total">Sub-Total: ${currentTotal}</span>
                     </div>
                     <div class="cart__btn-group">
                         <button class="cart__btn increase__btn" data-name=${cat.name}> + </button>
