@@ -31,9 +31,8 @@ app.get('/api/session', (req, res) => {
 // Create a new session (login)
 app.post('/api/session', (req, res) => {
   const { username } = req.body;
-
+  
   if(!users.isValidUsername(username)) {
-    console.log(username);
     res.status(400).json({ error: 'required-username' });
     return;
   }
