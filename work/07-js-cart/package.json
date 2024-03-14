@@ -4,7 +4,9 @@
   "description": "* start from the up-to-date main branch (`git checkout main; git pull origin main`) * Create a feature branch named 'js-cart' (`git checkout -b js-cart`) * Add and Modify the files in this directory to have the require features * Add, commit, and push the branch to github * Create a PR to merge to main * Be sure to include the TA(s) and I as reviewers.   * Due by **Sun Feb 25, 11:59pm PT**",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
