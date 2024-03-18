@@ -17,11 +17,11 @@ function render(state, rootEl) {
   rootEl.innerHTML = "\n    ".concat(errorHtml(state), "\n    ").concat(loginHtml(state), "\n    ").concat(contentHtml(state), "\n    ");
 }
 function errorHtml(state) {
-  return "\n    <div class=\"error\">\n        <p class=\"error__message\">".concat(state.error ? state.error : '', "</p>\n    </div>\n    ");
+  return state.error ? "<div class=\"error\">\n        <p class=\"error__message\">".concat(state.error, "</p>\n    </div>") : '';
 }
 function loginHtml(state) {
   if (state.isLoggedIn) {
-    return "\n        <div class=\"login\"></div>\n        ";
+    return "";
   }
   if (state.isLoadingLogin) {
     return "\n        <div class=\"login\">\n            <label class=\"login__lbl\">\n                <span> Loading user's information... </span>\n            </label>\n        </div>\n        ";
@@ -30,7 +30,7 @@ function loginHtml(state) {
 }
 function contentHtml(state) {
   if (!state.isLoggedIn) {
-    return "\n        <div class=\"content\"></div>\n        ";
+    return "";
   }
   if (state.isLoadingMsg) {
     return "\n        <div class=\"content\">\n         <h2> Welcome, ".concat(state.username, "</h2>\n            <div class=\"data__display\">\n                <h3> Message Board</h3>  \n                <span> Loading message... </span>\n            </div>\n            <div class=\"content__update\">\n                <span> New Message: </span>\n                <input id=\"message\" type=\"text\"/>\n                <button class=\"update__btn\"> Submit </button>\n            </div>\n            <div class=\"content__logout\">\n                <button class=\"logout__btn\"> Logout </button>\n            </div>\n        </div>\n        ");

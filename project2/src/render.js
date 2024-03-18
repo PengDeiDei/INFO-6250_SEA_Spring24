@@ -7,18 +7,15 @@ function render(state, rootEl){
 }
 
 function errorHtml(state) {
-    return `
-    <div class="error">
-        <p class="error__message">${state.error? state.error : ''}</p>
-    </div>
-    `;
+    return state.error? 
+    `<div class="error">
+        <p class="error__message">${state.error}</p>
+    </div>` : '';
 }
 
 function loginHtml(state) {
     if(state.isLoggedIn){
-        return `
-        <div class="login"></div>
-        `;
+        return ``;
     }
 
     if(state.isLoadingLogin){
@@ -44,9 +41,7 @@ function loginHtml(state) {
 
 function contentHtml(state) {
     if(!state.isLoggedIn){
-        return `
-        <div class="content"></div>
-        `;
+        return ``;
     }
 
     if(state.isLoadingMsg){
