@@ -110,11 +110,20 @@ footer {
 .content__display{
     background-color: lightsteelblue;
     margin: 0.5rem;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
 }
 
 .content__display h3{
     text-align: center;
     border-bottom: 1px solid black;
+}
+
+.messages__container{
+    grid-column: span 9;
+
+    border-right: 1px solid black;
 }
 
 .messages__list{
@@ -124,7 +133,6 @@ footer {
     list-style-type: none;
 
     margin: 0;
-
 }
 
 .message__container{
@@ -146,6 +154,30 @@ footer {
 
 .message__text{
     margin-left: 2rem;
+}
+
+.users__container{
+    grid-column: span 3;
+}
+
+.users__list{
+    display: flex;
+    flex-direction: column;
+
+    list-style-type: none;
+
+    margin: 0;
+}
+
+.user__item{
+    background-color: lightgray;
+
+    border: 1px solid black;
+    border-radius: 0.25rem;
+
+    text-align: center;
+    font-weight: bold;
+    margin: 0.5rem;
 }
 
 .update__form{

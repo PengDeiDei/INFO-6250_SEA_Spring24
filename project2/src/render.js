@@ -49,8 +49,14 @@ function contentHtml(state) {
         <div class="content">
          <h2> Welcome, ${state.username}</h2>
             <div class="data__display">
-                <h3> Message Board</h3>  
-                <span> Loading message... </span>
+                <div class="messages__container">
+                    <h3> Message Board</h3>  
+                    <span> Loading message... </span>
+                </div>
+                <div class="users__container">
+                    <h3> Users Onlined </h3>
+                    <span> Loading onlined users...</span>
+                </div>
             </div>
             <div class="content__update">
                 <span> New Message: </span>
@@ -68,8 +74,14 @@ function contentHtml(state) {
     <div class="content">
         <h2> Welcome, ${state.username}.</h2>
         <div class="content__display">
-            <h3> Message Board</h3> 
-            ${getMessageList(state)}
+            <div class="messages__container">
+                <h3> Message Board</h3> 
+                ${getMessageList(state)}
+            </div>
+            <div class="users__container">
+                <h3> Users Onlined </h3>
+                ${getUserList(state)}
+            </div>
         </div>
         <div class="content__update">
             <form class="update__form">
@@ -98,11 +110,28 @@ function getMessageList(state) {
       `</ol>`;
   }
 
-export function renderMsg(state, rootEl){
-    const messageEl = rootEl.querySelector('.content__display');
+function getUserList(state){
+    let uniqueUsername = {};
+    Object.values(state.sessions).map( session => {
+        const username = session.username;
+        uniqueUsername[username] = uniqueUsername[username]+1||1;
+    })
 
-    messageEl.innerHTML = `<h3> Message Board</h3>`+
-    state.isLoadingMsg? '<span> Loading message... </span>' :`${getMessageList(state)}`;
+    return`<ol class="users__list">` +
+    Object.keys(uniqueUsername).map( username => `
+      <li class="user__item">
+            <span class="user__username">${username}</span>
+      </li>
+    `).join('') +
+      `</ol>`;
+}
+
+export function renderMsg(state, rootEl){
+    const messageEl = rootEl.querySelector('.messages__container');
+    const userEl = rootEl.querySelector('.users__container');
+
+    messageEl.innerHTML = `<h3> Message Board</h3> ${getMessageList(state)}`;
+    userEl.innerHTML = ` <h3> Users Onlined </h3> ${getUserList(state)}`;
 }
 
 export default render;

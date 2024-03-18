@@ -35,6 +35,7 @@ function logout() {
                 // set states to logged out
                 state.username = '';
                 state.messages = [];
+                state.sessions = {};
                 state.error = '';
                 state.isLoggedIn = false;
                 state.isLoadingLogin = false;
@@ -103,12 +104,12 @@ function displayMessage(){
     state.isLoadingMsg = true;
     state.error = '';
     render(state, rootEl);
-
     fetchMessage()
     .then( response => {
-        const {username, storedMessages} = response;
+        const {username, storedMessages, storedSessions} = response;
         state.username = username;
         state.messages = storedMessages;
+        state.sessions = storedSessions;
         state.isLoadingMsg = false;
         state.error = '';
         render(state, rootEl);
@@ -126,15 +127,13 @@ function refreshMessages(){
 
         fetchMessage()
         .then( response => {
-            const {username, storedMessages} = response;
-            
-            // update messages list when finding changes on storedMessages
-            if(storedMessages.length != state.messages.length){
+            const {username, storedMessages, storedSessions} = response;
                 state.username = username;
                 state.messages = storedMessages;
+                state.sessions = storedSessions;
+                state.isLoadingMsg = false;
                 state.error = '';
                 renderMsg(state, rootEl);
-            }
         })
         .catch( err => {
             state.isLoadingMsg = false;

@@ -33,18 +33,30 @@ function contentHtml(state) {
     return "";
   }
   if (state.isLoadingMsg) {
-    return "\n        <div class=\"content\">\n         <h2> Welcome, ".concat(state.username, "</h2>\n            <div class=\"data__display\">\n                <h3> Message Board</h3>  \n                <span> Loading message... </span>\n            </div>\n            <div class=\"content__update\">\n                <span> New Message: </span>\n                <input id=\"message\" type=\"text\"/>\n                <button class=\"update__btn\"> Submit </button>\n            </div>\n            <div class=\"content__logout\">\n                <button class=\"logout__btn\"> Logout </button>\n            </div>\n        </div>\n        ");
+    return "\n        <div class=\"content\">\n         <h2> Welcome, ".concat(state.username, "</h2>\n            <div class=\"data__display\">\n                <div class=\"messages__container\">\n                    <h3> Message Board</h3>  \n                    <span> Loading message... </span>\n                </div>\n                <div class=\"users__container\">\n                    <h3> Users Onlined </h3>\n                    <span> Loading onlined users...</span>\n                </div>\n            </div>\n            <div class=\"content__update\">\n                <span> New Message: </span>\n                <input id=\"message\" type=\"text\"/>\n                <button class=\"update__btn\"> Submit </button>\n            </div>\n            <div class=\"content__logout\">\n                <button class=\"logout__btn\"> Logout </button>\n            </div>\n        </div>\n        ");
   }
-  return "\n    <div class=\"content\">\n        <h2> Welcome, ".concat(state.username, ".</h2>\n        <div class=\"content__display\">\n            <h3> Message Board</h3> \n            ").concat(getMessageList(state), "\n        </div>\n        <div class=\"content__update\">\n            <form class=\"update__form\">\n                <span> New Message: </span>\n                <input id=\"message\" type=\"text\"/>\n                <button type=\"submit\" class=\"update__btn\"> Submit </button>\n            </form>\n        </div>\n        <div class=\"content__logout\">\n            <button class=\"logout__btn\"> Logout </button>\n        </div>\n    </div>\n    ");
+  return "\n    <div class=\"content\">\n        <h2> Welcome, ".concat(state.username, ".</h2>\n        <div class=\"content__display\">\n            <div class=\"messages__container\">\n                <h3> Message Board</h3> \n                ").concat(getMessageList(state), "\n            </div>\n            <div class=\"users__container\">\n                <h3> Users Onlined </h3>\n                ").concat(getUserList(state), "\n            </div>\n        </div>\n        <div class=\"content__update\">\n            <form class=\"update__form\">\n                <span> New Message: </span>\n                <input id=\"message\" type=\"text\"/>\n                <button type=\"submit\" class=\"update__btn\"> Submit </button>\n            </form>\n        </div>\n        <div class=\"content__logout\">\n            <button class=\"logout__btn\"> Logout </button>\n        </div>\n    </div>\n    ");
 }
 function getMessageList(state) {
   return "<ol class=\"messages__list\">" + Object.values(state.messages).map(function (message) {
     return "\n      <li class=\"message__item\">\n        <div class=\"message__container\">\n            <span class=\"message__username\">".concat(message.sender, "</span>\n            <span class=\"message__text\">").concat(message.text, "</span>\n        </div>\n      </li>\n    ");
   }).join('') + "</ol>";
 }
+function getUserList(state) {
+  var uniqueUsername = {};
+  Object.values(state.sessions).map(function (session) {
+    var username = session.username;
+    uniqueUsername[username] = uniqueUsername[username] + 1 || 1;
+  });
+  return "<ol class=\"users__list\">" + Object.keys(uniqueUsername).map(function (username) {
+    return "\n      <li class=\"user__item\">\n            <span class=\"user__username\">".concat(username, "</span>\n      </li>\n    ");
+  }).join('') + "</ol>";
+}
 function renderMsg(state, rootEl) {
-  var messageEl = rootEl.querySelector('.content__display');
-  messageEl.innerHTML = "<h3> Message Board</h3>" + state.isLoadingMsg ? '<span> Loading message... </span>' : 0;
+  var messageEl = rootEl.querySelector('.messages__container');
+  var userEl = rootEl.querySelector('.users__container');
+  messageEl.innerHTML = "<h3> Message Board</h3> ".concat(getMessageList(state));
+  userEl.innerHTML = " <h3> Users Onlined </h3> ".concat(getUserList(state));
 }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (render);
 
@@ -179,6 +191,7 @@ var err_msg = {
 var state = {
   username: '',
   messages: [],
+  sessions: {},
   error: '',
   isLoadingLogin: false,
   isLoggedIn: false,
@@ -281,6 +294,7 @@ function logout() {
         // set states to logged out
         _states__WEBPACK_IMPORTED_MODULE_0__["default"].username = '';
         _states__WEBPACK_IMPORTED_MODULE_0__["default"].messages = [];
+        _states__WEBPACK_IMPORTED_MODULE_0__["default"].sessions = {};
         _states__WEBPACK_IMPORTED_MODULE_0__["default"].error = '';
         _states__WEBPACK_IMPORTED_MODULE_0__["default"].isLoggedIn = false;
         _states__WEBPACK_IMPORTED_MODULE_0__["default"].isLoadingLogin = false;
@@ -340,9 +354,11 @@ function displayMessage() {
   (0,_render__WEBPACK_IMPORTED_MODULE_1__["default"])(_states__WEBPACK_IMPORTED_MODULE_0__["default"], rootEl);
   (0,_services__WEBPACK_IMPORTED_MODULE_2__.fetchMessage)().then(function (response) {
     var username = response.username,
-      storedMessages = response.storedMessages;
+      storedMessages = response.storedMessages,
+      storedSessions = response.storedSessions;
     _states__WEBPACK_IMPORTED_MODULE_0__["default"].username = username;
     _states__WEBPACK_IMPORTED_MODULE_0__["default"].messages = storedMessages;
+    _states__WEBPACK_IMPORTED_MODULE_0__["default"].sessions = storedSessions;
     _states__WEBPACK_IMPORTED_MODULE_0__["default"].isLoadingMsg = false;
     _states__WEBPACK_IMPORTED_MODULE_0__["default"].error = '';
     (0,_render__WEBPACK_IMPORTED_MODULE_1__["default"])(_states__WEBPACK_IMPORTED_MODULE_0__["default"], rootEl);
@@ -357,15 +373,14 @@ function refreshMessages() {
   if (_states__WEBPACK_IMPORTED_MODULE_0__["default"].isLoggedIn) {
     (0,_services__WEBPACK_IMPORTED_MODULE_2__.fetchMessage)().then(function (response) {
       var username = response.username,
-        storedMessages = response.storedMessages;
-
-      // update messages list when finding changes on storedMessages
-      if (storedMessages.length != _states__WEBPACK_IMPORTED_MODULE_0__["default"].messages.length) {
-        _states__WEBPACK_IMPORTED_MODULE_0__["default"].username = username;
-        _states__WEBPACK_IMPORTED_MODULE_0__["default"].messages = storedMessages;
-        _states__WEBPACK_IMPORTED_MODULE_0__["default"].error = '';
-        (0,_render__WEBPACK_IMPORTED_MODULE_1__.renderMsg)(_states__WEBPACK_IMPORTED_MODULE_0__["default"], rootEl);
-      }
+        storedMessages = response.storedMessages,
+        storedSessions = response.storedSessions;
+      _states__WEBPACK_IMPORTED_MODULE_0__["default"].username = username;
+      _states__WEBPACK_IMPORTED_MODULE_0__["default"].messages = storedMessages;
+      _states__WEBPACK_IMPORTED_MODULE_0__["default"].sessions = storedSessions;
+      _states__WEBPACK_IMPORTED_MODULE_0__["default"].isLoadingMsg = false;
+      _states__WEBPACK_IMPORTED_MODULE_0__["default"].error = '';
+      (0,_render__WEBPACK_IMPORTED_MODULE_1__.renderMsg)(_states__WEBPACK_IMPORTED_MODULE_0__["default"], rootEl);
     })["catch"](function (err) {
       _states__WEBPACK_IMPORTED_MODULE_0__["default"].isLoadingMsg = false;
       _states__WEBPACK_IMPORTED_MODULE_0__["default"].error = _states__WEBPACK_IMPORTED_MODULE_0__.err_msg[err.error];

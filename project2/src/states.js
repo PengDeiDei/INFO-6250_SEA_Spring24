@@ -9,6 +9,7 @@ export const err_msg = {
 const state = {
     username: '',
     messages: [],
+    sessions: {},
     error: '',
     isLoadingLogin: false,
     isLoggedIn: false,

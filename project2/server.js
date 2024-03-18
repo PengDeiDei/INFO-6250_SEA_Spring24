@@ -73,8 +73,9 @@ app.get('/api/message', (req, res) => {
   }
 
   const storedMessages = chat.getMessages();
+  const storedSessions = sessions.getSession();
   
-  res.json({ username, storedMessages });
+  res.json({ username, storedMessages, storedSessions });
 });
 
 app.post('/api/message', (req, res) => {
