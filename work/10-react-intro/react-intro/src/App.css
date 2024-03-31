@@ -1,0 +1,75 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.login__page{
+  background-color: lightsteelblue;
+  padding: 0.5rem;
+}
+
+.login__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.login__lbl{
+  font-weight: bold;
+}
+
+.login__btn{
+  width: 30%;
+  align-self: center;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+.message__section{
+  background-color: aliceblue;
+  border-radius: 0.25rem;
+  padding: 0 0.5rem;
+}
+
+.game__page{
+  background-color: lightsteelblue;
+  padding: 0.5rem;
+}
+
+.user__section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logout__btn{
+  width: 30%;
+  align-self: center;
+}
+
+.game__section{
+  background-color: lightgray;
+  padding: 0 0.5rem;
+}
+
+.game__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+.game__form input, .game__form span{
+  display: inline-block;
+  width: 80%;
+}
+
+.game__form span{
+  font-weight: bold;
+}
+
+.submit__btn{
+  margin: 0.5rem 0;
+  width: 30%;
+}
