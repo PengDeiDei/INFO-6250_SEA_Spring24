@@ -1,0 +1,71 @@
+#root{
+  width: 100%;
+}
+
+main{
+  background-color: lightsteelblue;
+  text-align: center;
+}
+
+.status{
+  background-color: beige;
+  margin-bottom: 0.5rem;
+}
+
+.login{
+  padding: 0.5rem;
+}
+
+.login__form{
+  display: flex;
+  flex-direction: column;
+}
+
+.login__button{
+  align-self: center;
+  margin-top: 0.5rem;
+  width: 25%;
+}
+
+.content{
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+}
+
+.content>h2{
+  grid-column: span 3;
+  text-align: center;
+  padding-left: 0.5rem;
+}
+
+.controls{
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.controls__refresh, .controls__logout{
+  width: 20%;
+  margin: 0.5rem;
+  align-self: flex-end;
+}
+
+.word{
+  grid-column: span 6;
+  padding: 0.5rem 0;
+}
+
+.update__form{
+  grid-column: span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.update__button{
+  width: 25%;
+  text-align: center;
+  align-self: center;
+  margin: 0.5rem;
+}
