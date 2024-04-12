@@ -88,7 +88,7 @@ function App() {
     fetchSession()
     .then( session => {
       setUsername(session.username);
-      setLoginStatus(loginStatus.IS_LOGGED_IN);
+      setLoginStatus(LOGIN_STATUS.IS_LOGGED_IN);
       return fetchWord();
     })
     .catch( err => {
@@ -118,7 +118,7 @@ function App() {
       { loginStatus === LOGIN_STATUS.NOT_LOGGED_IN && <LoginForm onLogin={onLogin}/>}
       { loginStatus === LOGIN_STATUS.IS_LOGGED_IN && (
         <div className='content'>
-          <h2>Hello, {username} </h2>
+          <h1>Hello, {username} </h1>
           <Controls onLogout={onLogout} onRefresh={onRefresh}/>
           <div className="word">
             { isWordPending ? 
