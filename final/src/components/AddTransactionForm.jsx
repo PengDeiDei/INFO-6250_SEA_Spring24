@@ -20,7 +20,7 @@ function AddTransactionForm({ onAddTransaction }) {
     const inputValue = e.target.value;
     if(isNaN(parseFloat(inputValue))){
       setAmount(0);
-    } else if( category === 'salary' || category === 'salary'){
+    } else if( category === 'salary' || category === 'transfer'){
       setAmount(parseFloat(inputValue));
     } else {
       const floatValue = -1 * parseFloat(inputValue);
@@ -30,9 +30,9 @@ function AddTransactionForm({ onAddTransaction }) {
 
   return (
     <form className="add__form" action="#/add" onSubmit={onSubmit}>
-      <label>
+      <label className='add__category'>
         <span> Choose category: </span>
-        <select className='add_category' onChange={onCategory}>
+        <select className='add_select' onChange={onCategory}>
           <option value="">--Please choose an option--</option>
           <option value="gas"> Gas </option>
           <option value="travel"> Travel </option>
@@ -44,9 +44,9 @@ function AddTransactionForm({ onAddTransaction }) {
           <option value="transfer"> Transfer </option>
         </select>
       </label>
-      <label>
+      <label className='add__amount'>
         <span> Amount: </span>
-        <input className="add__amount" value={amount} onChange={onAmount}/>
+        <input className="add__input" value={amount} onChange={onAmount}/>
       </label>
       <button type="submit" className="add__button">Add</button>
     </form>

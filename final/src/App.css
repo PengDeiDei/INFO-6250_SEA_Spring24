@@ -2,7 +2,131 @@
   width: 100%;
 }
 
-main{
+.app{
+  display:grid;
+
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+
+    grid-template-rows: auto auto 1fr auto;
+}
+
+header{
+  grid-area: header;
+
+  background-color: lightsteelblue;
+  text-align: start;
+  padding-left: 0.5rem;
+}
+
+footer{
+  grid-area: footer;
+
   background-color: lightsteelblue;
   text-align: center;
+  padding: 0.5em;
+}
+
+main{
+  grid-area: main;
+  background-color: beige;
+  text-align: center;
+}
+
+.status{
+  background-color: lightblue;
+  margin-bottom: 0.5rem;
+}
+
+.login{
+  padding: 0.5rem;
+}
+
+.login__form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login__button{
+  align-self: center;
+  margin-top: 0.5rem;
+  width: 25%;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+}
+
+.content>p{
+  text-align: start;
+  padding-left: 1.5rem;
+}
+
+.content>p::first-letter{
+  font-size: 150%;
+  line-height: 1.5;
+}
+
+.controls{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.controls__refresh, .controls__logout{
+  width: 20%;
+  margin: 0.5rem;
+}
+
+.transaction{
+  display: flex;
+  flex-direction: column;
+}
+
+.transaction__container{
+  background-color: lightgrey;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.transactions__list{
+  list-style: none;
+  padding: 0;
+}
+
+.transaction__item{
+  background-color: whitesmoke;
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.transaction__label{
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.add__form{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  padding-left: 1rem;
+}
+
+.add__button{
+  width: 20%;
+  margin: 0.5rem;
 }

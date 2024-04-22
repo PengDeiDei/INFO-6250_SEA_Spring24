@@ -116,6 +116,9 @@ function App() {
 
   return (
     <div className='app'>
+      <header>
+        <h1> Expense Tracker</h1>
+      </header>
       <main>
         { state.error && <Status error={ state.error }/> }
         { state.loginStatus == LOGIN_STATUS.PENDING && 
@@ -136,6 +139,9 @@ function App() {
           </div> 
         }
       </main>
+      <footer>
+        We really don't care about your privacy, see our <a href="/">Privacy Policy</a>
+      </footer>
     </div>
   )
 }

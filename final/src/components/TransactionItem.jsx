@@ -6,7 +6,7 @@ function TransactionItem({
     const isAddedClass = isLastAdded ? "transaction__text--added" : "";
     return (
         <>
-            <label>
+            <label className="transaction__label">
                 <span
                     data-id={transaction.id}
                     className={`transaction__text ${isAddedClass}`}
