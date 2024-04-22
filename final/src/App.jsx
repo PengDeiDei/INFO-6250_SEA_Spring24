@@ -112,7 +112,6 @@ function App() {
 
   useEffect( () => {
     checkForSession();
-    console.log(state.loginStatus);
   }, []);
 
   return (

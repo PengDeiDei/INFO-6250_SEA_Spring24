@@ -28,7 +28,7 @@ function Transactions({
       { show === SHOW.EMPTY && (
         <p>No transaction yet, add one!</p>
       )}
-      { show === SHOW.TODOS && (
+      { show === SHOW.TRANSACTIONS && (
         <ul className="transactions">
           { Object.values(transactions).map( transaction => (
             <li className="transaction" key={transaction.id}>

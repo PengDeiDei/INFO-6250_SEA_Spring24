@@ -35,7 +35,7 @@ export const ACTIONS = {
   REPORT_ERROR: 'reportError',
   START_LOADING_TRANSACTIONS: 'startLoadingTransactions',
   ADD_TRANSACTION: 'addTransaction',
-  DELETE_TRANSCTION: 'deleteTransaction',
+  DELETE_TRANSACTION: 'deleteTransaction',
   REPLACE_TRANSACTIONS: 'replaceTransactions',
 }
 

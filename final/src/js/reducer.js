@@ -57,7 +57,7 @@ function reducer(state, action ) {
                 error: action.error || 'ERROR',
             };
 
-        case ACTIONS.DELETE_TRANSCTION:
+        case ACTIONS.DELETE_TRANSACTION:
             const transactionsCopy = {...state.transactions};
             delete transactionsCopy[action.id];
             return{

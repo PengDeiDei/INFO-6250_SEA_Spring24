@@ -15,13 +15,13 @@ app.use(express.json());
 // Sessions
 // get session
 app.get('/api/session', (req, res) => {
-    const sid = req.cookies.sid;
-    const username = sid ? sessions.getSessionUser(sid) : '';
-    if(!sid || !users.isValid(username)) {
-      res.status(401).json({ error: 'auth-missing' });
-      return;
-    }
-    res.json({ username });
+  const sid = req.cookies.sid;
+  const username = sid ? sessions.getSessionUser(sid) : '';
+  if(!sid || !users.isValid(username)) {
+    res.status(401).json({ error: 'auth-missing' });
+    return;
+  }
+  res.json({ username });
 });
 
 // post session
@@ -33,7 +33,7 @@ app.post('/api/session', (req, res) => {
     return;
   }
 
-  if(username === 'dog') {
+  if(username.toLowerCase() === 'dog') {
     res.status(403).json({ error: 'auth-insufficient' });
     return;
   }
