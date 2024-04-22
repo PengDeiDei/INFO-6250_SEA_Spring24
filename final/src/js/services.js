@@ -1,46 +1,97 @@
-export function fetchLogin(username) {
-  return fetch('/api/session/', {
+// transaction
+export function fetchAddTransaction({ category, amount }) {
+  return fetch('api/transactions', {
     method: 'POST',
-    headers: {
-      'content-type': 'application/json', // set this header when sending JSON in the body of request
-    },
-    body: JSON.stringify( { username } ),
-  })
-  // fetch() rejects on network error
-  .catch( err => Promise.reject({ error: 'network-error' }) )
-  .then( response => {
-    if(!response.ok) {  // response.ok checks the status code from the service
-      // This service returns JSON on errors,
-      // so we use that as the error object and reject
-      return response.json().then( err => Promise.reject(err) );
-    }
-    return response.json();
-  });
-}
-
-export function fetchLogout(){
-  return fetch('/api/session/', {
-    method: 'DELETE',
-    headers: {
+    headers: new Headers({
       'content-type': 'application/json',
-    },
+    }),
+    body: JSON.stringify( { category, amount } ),
   })
-  .catch( err => Promise.reject({ error: 'network-error'}) )
+  .catch( () => Promise.reject({ err: 'networkError'}) )
   .then( response => {
-    if(!response.ok){
-      return response.json().then( err => Promise.reject(err) )
+    if(response.ok) {
+      return response.json();
     }
-    return response.json();
+    return response.json()
+    .catch( error => Promise.reject({ error }))
+    .then( err => Promise.reject(err));
   });
 }
 
-export function fetchSession(){
-  return fetch('/api/session/')
-  .catch( err => Promise.reject({ error: 'network-error'}) )
+export function fetchDeleteTransaction(id) {
+  return fetch(`/api/transactions/${id}`, {
+    method: 'DELETE',
+  })
+  .catch( () => Promise.reject({ error: 'networkError' }) )
   .then( response => {
-    if(!response.ok){
-      return response.json().then( err => Promise.reject(err) )
+    if (response.ok) {
+      return response.json();
     }
-    return response.json();
+    return response.json()
+    .catch( error => Promise.reject({ error }) )
+    .then( err => Promise.reject(err) );
+  });
+}
+
+export function fetchTransactions() {
+  return fetch('/api/transactions')
+  .catch( () => Promise.reject({ error: 'networkError' }) )
+  .then( response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return response.json()
+    .catch( error => Promise.reject({ error }) )
+    .then( err => Promise.reject(err) );
+  });
+}
+
+// session
+export function fetchLogin(username) {
+  return fetch('/api/session', {
+    method: 'POST',
+    headers: new Headers({
+      'content-type': 'application/json'
+    }),
+    body: JSON.stringify({ username }),
+  })
+  .catch( () => Promise.reject({ error: 'networkError' }) )
+  .then( response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return response.json()
+    .catch( error => Promise.reject({ error }) )
+    .then( err => Promise.reject(err) );
+  });
+}
+
+export function fetchLogout() {
+  return fetch('/api/session', {
+    method: 'DELETE',
+  })
+  .catch( () => Promise.reject({ error: 'networkError' }) )
+  .then( response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return response.json()
+    .catch( error => Promise.reject({ error }) )
+    .then( err => Promise.reject(err) );
+  });
+}
+
+export function fetchSession() {
+  return fetch('/api/session', {
+    method: 'GET',
+  })
+  .catch( () => Promise.reject({ error: 'networkError' }) )
+  .then( response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return response.json()
+    .catch( error => Promise.reject({ error }) )
+    .then( err => Promise.reject(err) );
   });
 }

@@ -5,13 +5,11 @@ const EXPENSE = {
     HOME: 'home',
     SHOPPING: 'shopping',
     DINING: 'dining',
-    OTHERS: 'others',
 };
 
 const INCOME = {
     SALARY: 'salary',
     TRANSFER: 'transfer',
-    OTHERS: 'others',
 }
 
 module.exports = {

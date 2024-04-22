@@ -86,8 +86,12 @@ app.post('/api/transactions', (req, res) => {
     return;
   }
   const { category, amount } = req.body;
-  if(!task) {
-    res.status(400).json({ error: 'required-task' });
+  if(!category) {
+    res.status(400).json({ error: 'required-category' });
+    return;
+  }
+  if(!amount) {
+    res.status(400).json({ error: 'required-amount' });
     return;
   }
   const transactionList = users.getUserData(username);
@@ -136,25 +140,6 @@ app.put('/api/transactions/:id', (req, res) => {
     return;
   }
   transactionList.updateTransaction(id, {category, amount});
-});
-
-// patch transaction by id
-app.patch('/api/transactions/:id', (req, res) => {
-  const sid = req.cookies.sid;
-  const username = sid ? sessions.getSessionUser(sid) : '';
-  if(!sid || !users.isValid(username)) {
-    res.status(401).json({ error: 'auth-missing' });
-    return;
-  }
-  const { id } = req.params;
-  const { category, amount } = req.body;
-  const transactionList = users.getUserData(username);
-  if(!transactionList.contains(id)) {
-    res.status(404).json({ error: `noSuchId`, message: `No transaction with id ${id}` });
-    return;
-  }
-  transactionList.updateTransaction(id, {category, amount});
-  res.json(transactionList.getTransaction(id));
 });
 
 app.delete('/api/transactions/:id', (req, res) => {
