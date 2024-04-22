@@ -17,13 +17,37 @@ function AddTransactionForm({ onAddTransaction }) {
   }
 
   function onAmount(e) {
-    setAmount(e.target.value);
+    const inputValue = e.target.value;
+    if(isNaN(parseFloat(inputValue))){
+      setAmount(0);
+    } else if( category === 'salary' || category === 'salary'){
+      setAmount(parseFloat(inputValue));
+    } else {
+      const floatValue = -1 * parseFloat(inputValue);
+      setAmount(floatValue > 0 ? -1*floatValue : floatValue);
+    }
   }
 
   return (
     <form className="add__form" action="#/add" onSubmit={onSubmit}>
-      <input className="add__category" value={category} onChange={onCategory}/>
-      <input className="add__amount" value={amount} onChange={onAmount}/>
+      <label>
+        <span> Choose category: </span>
+        <select className='add_category' onChange={onCategory}>
+          <option value="">--Please choose an option--</option>
+          <option value="gas"> Gas </option>
+          <option value="travel"> Travel </option>
+          <option value="grocery"> Grocery </option>
+          <option value="home"> Home </option>
+          <option value="shopping"> Shopping </option>
+          <option value="dining"> Dining </option>
+          <option value="salary"> Salary </option>
+          <option value="transfer"> Transfer </option>
+        </select>
+      </label>
+      <label>
+        <span> Amount: </span>
+        <input className="add__amount" value={amount} onChange={onAmount}/>
+      </label>
       <button type="submit" className="add__button">Add</button>
     </form>
   );

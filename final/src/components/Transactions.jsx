@@ -22,6 +22,18 @@ function Transactions({
     show = SHOW.TRANSACTIONS;
   }
 
+  let totalExpense = 0;
+  let totalIncome = 0;
+
+  Object.values(transactions).forEach(transaction => {
+    // Check if the amount is positive (income) or negative (expense)
+    if (transaction.amount > 0) {
+        totalIncome += transaction.amount; // Add to total income
+    } else {
+        totalExpense += Math.abs(transaction.amount); // Add absolute value to total expense
+    }
+  });
+
   return(
     <div className="content">
         { show === SHOW.PENDING && <Loading className="transaction__waiting">Loading Transactions...</Loading> }
@@ -29,9 +41,12 @@ function Transactions({
         <p>No transaction yet, add one!</p>
       )}
       { show === SHOW.TRANSACTIONS && (
-        <ul className="transactions">
-          { Object.values(transactions).map( transaction => (
-            <li className="transaction" key={transaction.id}>
+        <div>
+          <span className="transactions__summary"> Total Expense: {totalExpense} </span>
+          <span className="transactions__summary"> Total Income: {totalIncome} </span>
+          <ul className="transactions__list">
+          { Object.values(transactions).map( transaction => (            
+            <li className="transaction__item" key={transaction.id}>
               <TransactionItem
                 transaction={transaction}
                 isLastAdded={lastAddedTransactionId===transaction.id}
@@ -39,7 +54,8 @@ function Transactions({
               />
             </li>
           ))}
-        </ul>
+          </ul>
+        </div>
       )}
     </div>
   );

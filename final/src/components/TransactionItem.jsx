@@ -4,7 +4,6 @@ function TransactionItem({
     onDeleteTransaction,
 }) {
     const isAddedClass = isLastAdded ? "transaction__text--added" : "";
-    console.log(transaction.id);
     return (
         <>
             <label>
