@@ -1,4 +1,17 @@
-# React + Vite
+# Expense Tracker
+This project is to help users to track their expense and income.
+Users can add new transaction by defining its category and amount of income/expense.
+The stored transactions can also be deleted by selected them.
+This application requires users to login before accessing its utilities.
+
+## Get Started
+Before using the application, under the project directory:
+    - Run 'npm install'
+    - Run 'npm run build'
+    - Run 'npm start'
+
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
